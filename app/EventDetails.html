@@ -6,11 +6,13 @@
         <link rel="stylesheet" href="/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="/css/app.css"/>
     </head>
-    <body ng-app="eventsApp">
+    <body ng-app="eventsApp" ng-cloak>
         <div class="container">
             <div class="navbar">
                 <div class="navbar-inner">
-                    <ul class="nav"></ul>
+                    <ul class="nav">
+                        <li><a href="/newEvent.html">Create Event</a></li> 
+                    </ul>
                 </div>
             </div>
 
@@ -22,6 +24,7 @@
                     </div>
                 </div>
 
+                <div ng-bind-html="snippet">some title</div>
                 <div class="row">
                     <div class="span3">
                         <div><strong>Date: </strong>{{event.date}}</div>
@@ -40,8 +43,21 @@
                 </div>
                 <hr />
                 <h3>Session</h3>
+                order By:
+                <select ng-model="sortorder" class="input-small">
+                    <option selected value="name">Name</option>
+                    <option value="-upVoteCount">Votes</option>
+                </select>
+                Show:
+                <select ng-model="query.level" class="input-small">
+                    <option selected value="">All</option>
+                    <option value="Advance">Advance</option>
+                    <option value="introductory">introductory</option>
+                    <option value="intermediate">intermediate</option>
+                </select>
+
                 <ul class="thumbnails">
-                    <li ng-repeat="session in event.sessions">
+                    <li ng-repeat="session in event.sessions | orderBy:sortorder | filter: query">
                         
                         <div class="row session">
                             <div class="span0 well votingWidget">
@@ -58,7 +74,7 @@
                             <div class="well span9">
                                 <h4 class"well-title">{{session.name}}</h4>
                                 <h6 style="margin-top:-10px;">{{session.creatorNmae}}</h6>
-                                <span>Duration: {{session.duration}}</span>
+                                <span>Duration: {{session.duration | durations}}</span>,
                                 <span>Level: {{session.level}}</span>
                                 <p>{{session.abstract}}</p>
                             </div>
@@ -72,7 +88,9 @@
     <script src="lib/underscore-1.4.4.min.js"></script>
     <script src="lib/bootstrap.min.js"></script>
     <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular/angular-sanitize.min.js"></script>
     <script src="js/app.js"></script>
     <script src="js/controllers/EventController.js"></script>
+    <script src="js/filters.js"></script>
     </body>
 </html>
