@@ -1,0 +1,67 @@
+<div style="padding:0px 20px;">
+    <img ng-src="{{event.imageUrl}}" alt="{{event.name}}"/>
+    <button class="btn" ng-click="reload()">Reload</button>
+    <div class="row">
+        <div class="spannil">
+            <h2>{{event.name}}</h2>
+        </div>
+    </div>
+
+    <div ng-bind-html="snippet">some title</div>
+    <div class="row">
+        <div class="span3">
+            <div><strong>Date: </strong>{{event.date}}</div>
+            <div><strong>time: </strong>{{event.time}}</div>
+        </div>
+
+        <div class="span4">
+            <address>
+                <div>
+                    <strong>Address: </strong>{{event.location.address}}<br>
+                    {{event.location.city}}<br>
+                    {{event.location.province}}
+                </div>
+            </address>
+        </div>
+    </div>
+    <hr />
+    <h3>Session</h3>
+    order By:
+    <select ng-model="sortorder" class="input-small">
+        <option selected value="name">Name</option>
+        <option value="-upVoteCount">Votes</option>
+    </select>
+    Show:
+    <select ng-model="query.level" class="input-small">
+        <option selected value="">All</option>
+        <option value="Advance">Advance</option>
+        <option value="introductory">introductory</option>
+        <option value="intermediate">intermediate</option>
+    </select>
+
+    <ul class="thumbnails">
+        <li class="span11" ng-repeat="session in event.sessions | orderBy:sortorder | filter: query" id="session">
+            
+            <div class="row session">
+                <div class="span0 well votingWidget">
+                    <div class="votingButton" ng-click="upVoteSession(session)">
+                        <i class="icon-chevron-up icon-white"></i>
+                    </div>
+                    <div class="badge badge-inverse">
+                        <div>{{session.upVoteCount}}</div>
+                    </div>
+                    <div class="votingButton" ng-click="downVoteSession(session)">
+                        <i class="icon-chevron-down icon-white"></i>
+                    </div>
+                </div>
+                <div class="well span9">
+                    <h4 class"well-title">{{session.name}}</h4>
+                    <h6 style="margin-top:-10px;">{{session.creatorNmae}}</h6>
+                    <span>Duration: {{session.duration | durations}}</span>,
+                    <span>Level: {{session.level}}</span>
+                    <p>{{session.abstract}}</p>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

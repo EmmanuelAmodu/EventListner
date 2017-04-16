@@ -1,17 +1,16 @@
 'use strict';
 
-eventsApp.controller("EventController", ['$scope', 'eventData', function($scope, eventData){
+eventsApp.controller("EventController", function($scope, eventData, $routeParams, $route){
     $scope.sortorder = "-name";
-    eventData.getEvent()
-        .$promise.then(function(event){
-            $scope.event = event;
-            console.log(event);
-        });
+    $scope.event = $route.current.locals.event;
+    $scope.reload = function(){
+        $route.reload();
+    }
     $scope.upVoteSession = function(session){
         session.upVoteCount++;
-    }
+    };
 
     $scope.downVoteSession = function(session){
         session.upVoteCount--;
-    }
-}]);
+    };
+});

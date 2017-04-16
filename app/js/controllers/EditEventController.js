@@ -1,11 +1,13 @@
 'use strict';
 
-eventsApp.controller('editEventController', function($scope){
-    $scope.saveEvent = function(event, editEventForm){
-        console.log(editEventForm);
-        if(editEventForm.$valid){
-            window.alert('event ' + event.name + ' saved');
-        }
+eventsApp.controller('editEventController', function($scope, $log, eventData){
+    $scope.saveEvent = function(event){
+        eventData.saveEvent(event)
+            .$promise.then(function(res){
+                $log.info(res.data);
+            }, function(err){
+                $log.warn(err.data);
+            });
     };
 
     $scope.cancelEdit = function() {
