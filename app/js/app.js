@@ -18,7 +18,12 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute'])
                         return eventData.getEvent($route.current.pathParams.id).$promise;
                     }
                 }
-            }).otherwise({redirectTo: '/events'});
+            })
+            .when('/sampleDirective', {
+                templateUrl: 'templates/sampleDirective.html',
+                controller: 'SampleDirectiveController'
+            })
+            .otherwise({redirectTo: '/events'});
    
         $locationProvider.html5Mode(true);
     });
