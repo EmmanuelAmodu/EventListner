@@ -3,6 +3,7 @@
 eventsApp.directive('mysample', function($compile){
     return {
         restrict: 'E',
-        template: "<input type='text' ng-model='sampleData' /> {{sampleData}} <br />"
+        template: "<input type='text' ng-model='sampleData' /> {{sampleData}} <br />",
+        scope: {}
     }
 });

@@ -1,7 +1,11 @@
 'use strict';
-eventsApp.directive('mysample', function($compile){
+eventsApp.directive('eventThumbnail', function(){
     return {
         restrict: 'E',
-        template: "<input type='text' ng-model='sampleData' /> {{sampleData}} <br />"
+        replace: true,
+        templateUrl: "/templates/directives/eventThumbnail.html",
+        scope: {
+            event: "=event"
+        }
     }
 });
