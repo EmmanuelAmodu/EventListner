@@ -1,4 +1,3 @@
-
 <style>
     input.ng-invalid.ng-dirty {background-color:pink}
 </style>
@@ -28,8 +27,7 @@
             </fieldset>
 
             <img ng-src="{{event.imageUrl}}" />
-            <br />
-            <br />
+            <br /><br />
 
             <button type="submit" ng-disabled="editEventForm.$invalid" ng-click="saveEvent(event, editEventForm)" class="btn btn-primary">Save</button>
             <button type="button" ng-click="cancelEdit()" class="btn btn-primary">Cancel</button>
