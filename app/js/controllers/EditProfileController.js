@@ -1,5 +1,4 @@
 'use strict';
-
 eventsApp.controller('EditProfileController', function($scope, gravatarUrlBuilder, userData) {
    $scope.saveUser = function(data){
        console.log(data)

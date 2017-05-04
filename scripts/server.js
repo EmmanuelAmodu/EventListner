@@ -6,7 +6,7 @@ var rootPath = path.normalize(__dirname + '/../');
 var app = express();
 var bodyParser = require('body-parser');
 
-app.use(bodyParser.urlencoded({extented: true}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({extended: true}));
 app.use(express.static(rootPath + '/app'));
 
@@ -25,4 +25,4 @@ app.get('*', function(req, res){
 
 var port = 8000;
 app.listen(port);
-console.log("server started at "+port);
+console.log("server started at " + port);

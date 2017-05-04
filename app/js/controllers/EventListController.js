@@ -1,4 +1,4 @@
 'use strict'
-eventsApp.controller('eventListController', function($scope, $location, eventData){
+eventsApp.controller('eventListController', function($scope, eventData){
     $scope.events = eventData.getAllEvents();
 });
